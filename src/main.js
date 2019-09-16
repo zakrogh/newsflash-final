@@ -1,10 +1,10 @@
-//import $ from 'jquery';
+import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
+import { BusinessSearch } from './yelp-api';
 
-export const hello = () => {
-  return "Hello";
-};
-
-hello();
+$(document).ready(function(){
+  const businessSearch = new BusinessSearch();
+  businessSearch.callBuisinessInfo("Seattle", "restaurant");
+});

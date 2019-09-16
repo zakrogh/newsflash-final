@@ -1,2 +1,1 @@
-# newsflash
-group prj
+Use this repo to start new projects.

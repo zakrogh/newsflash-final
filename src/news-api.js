@@ -1,7 +1,17 @@
-const getNewsApi = function(city){
+/* Setup Instructions:
+* include at top of main js:
+* import { getNewsApi } from './news-api.js';
+*
+* parent function must include async
+*
+* function call must include await
+* ex: console.log(await getNewsApi("seattle"));
+*/
+
+export const getNewsApi = function(city){
   let promise = new Promise(function(resolve, reject) {
     let request = new XMLHttpRequest();
-    let url = `https://content.guardianapis.com/search?api-key=6761e014-564e-455a-bd12-fd368a4859e2&section=us-news&show-fields=trailText,thumbnail&q=` + city;
+    let url = `https://content.guardianapis.com/search?api-key=${process.env.NEWS_API_KEY}&section=us-news&show-fields=trailText,thumbnail&q=` + city;
     request.onload = function() {
       if (this.status === 200) {
         resolve(request.response);
@@ -14,7 +24,7 @@ const getNewsApi = function(city){
   });
 
   let apiData = promise.then(async function(response) {
-    content = JSON.parse(response);
+    let content = JSON.parse(response);
     return content.response;
   }, function(error) {
     console.log(error);

@@ -12,6 +12,7 @@
 */
 
 import { hello } from '../src/main';
+import { WeatherService } from '../src/weather-service';
 //import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,12 +23,12 @@ describe('hello', function() {
     var message = hello();
     expect(message).toEqual("Hello");
   });
-  let newObj = Const();
+  let weatherService = new WeatherService();
   //TDD 
   //return valid city (entered by user) pertinent info
   it("return valid city (entered by user) pertinent info", function(){
     //method test
-    expect(message).toEqual("Hello");
+      expect(weatherService.getWeatherByCity(city)[0]).toEqual("The complement to the object.response.");  
   });
   //valid GET request at given endpoint (each API)
   it("valid GET request at given endpoint (each API)", function(){
@@ -51,8 +52,9 @@ describe('hello', function() {
   });
   // - given the city, does it return the weather 
   it("given the city, does it return the weather", function(){
+    let cityWeather = weatherService.getWeatherByCity()
     //method test
-    expect(message).toEqual("Hello");
+    expect(weatherService.getWeatherByCity(city)).toEqual("38 C");
   });
   // - given the city, does it return the map
   it("given the city, does it return the map", function(){

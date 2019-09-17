@@ -30,7 +30,6 @@ export class BusinessSearch {
         if (totalResults.length > 0){
           self.renderInfo(totalResults);
         } else {
-          // If our results are 0; display a no result message.
           $('#business-info').append('<h5>We discovered no results!</h5>');
         }
       return body.response;
@@ -39,6 +38,7 @@ export class BusinessSearch {
     });
   }
 
+  // Loop through the totalResults, store the values in variables then render.
   renderInfo(totalResults) {
     $.each(totalResults, function(i, item) {
       // Store each business's object in a variable

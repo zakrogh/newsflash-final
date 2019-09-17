@@ -1,9 +1,13 @@
 import $ from 'jquery';
 
 export class BusinessSearch {
-  callBuisinessInfo(location, term) {
-    const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${location}&term=${term}`;
-    // var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=by-chloe&location=boston";
+  constructor(location, term) {
+    this.location = location;
+    this.term = term;
+  }
+  callBuisinessInfo() {
+    const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${this.location}&term=${this.term}`;
+    
     $.ajax({
       url: url,
       headers: {
@@ -30,10 +34,16 @@ export class BusinessSearch {
             const city = item.location.city;
             const state = item.location.state;
             // Append our result into our page
-            $('#business-info').append(`<div id="${id}"><a href="${url}"><p>${name}</p></a>Rate: ${rating}/5  with ${reviewCount} Reviews<br>Category: ${alias}<br>${address}, ${city}, ${state}<br>${phone}<hr></div>`);
+            $('#business-info').append(`
+              <div id="${id}">
+                <a href="${url}"><p>${name}</p></a>
+                Rate: ${rating}/5  with ${reviewCount} Reviews<br>Category: ${alias}<br>
+                ${address}, ${city}, ${state}<br>
+                ${phone}<hr>
+              </div>`);
           });
         } else {
-          // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
+          // If our results are 0; display a no result message.
           $('#business-info').append('<h5>We discovered no results!</h5>');
         }
       },

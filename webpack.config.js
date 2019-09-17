@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/main.js', // entry point
@@ -18,10 +19,11 @@ module.exports = {
         new UglifyJsPlugin({ sourceMap: true }),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-          title: 'tdd-starter',
-          template: './src/index.html',
+          title: 'newsflash',
+          template: './src/weather.html',
           inject: 'body'
-        })
+        }),
+        new Dotenv()
     ],
     module: {
         rules: [

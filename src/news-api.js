@@ -7,7 +7,13 @@
 * function call must include await
 * ex: console.log(await getNewsApi("seattle"));
 */
-
+/* api structure:
+* apiData.results[i].fields.thumbnail   //thumbnail picture of news story
+* apiData.results[i].webUrl             //url link of news story
+* apiData.results[i].webTitle           //title of news story
+* apiData.results[i].fields.trailText   //brief summary of news story
+* apiData.results[i].webPublicationDate //date of news story, suggest .slice(0, 10) to cut out time of day
+*/
 export const getNewsApi = function(city){
   let promise = new Promise(function(resolve, reject) {
     let request = new XMLHttpRequest();

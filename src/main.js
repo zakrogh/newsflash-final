@@ -38,12 +38,22 @@ const displayNews = function(newsData){
     }
   }
 }
+let platform = new H.service.Platform({
+  'apikey' : '{}'
+});
+var defaultLayers = platform.createDefaultLayers();
+var map = new H.Map(
+  $(".citymap"), defaultLayers.vector.normal.map,
+  {
+    zoom: 10,
+    center: {lat: 52.5, lng: 13.4}
+  });
 
 $(document).ready(function(){
   $("#city-input").submit(async function(event){
+    event.preventDefault();
     $(".card-body").text("");
     let city = $("#city-name").val();
-    event.preventDefault();
     const businessSearch = new BusinessSearch();
     businessSearch.callBuisinessInfo(city, "restaurant");
     let newsData = await gatherNews(city);

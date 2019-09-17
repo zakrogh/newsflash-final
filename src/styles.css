@@ -15,25 +15,22 @@
   font-size: 24px;
 }
 
-
 div {
   padding: 30px;
 }
-
 
 .card-header {
   background-color: #9ba3b0;
   font-family: monospace;
   font-size: 24px;
   text-align: center;
-  width: 400px;
+
 }
 
 .card-body {
   background-color: #c0c2c4;
   height: 400px;
-  width: 400px;
-
+  overflow: scroll;
 }
 
 .container {

@@ -1,38 +1,51 @@
+!DOCTYPE html>
 <html>
   <head>
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="weather-interface.js"></script>
-    <title>Weather</title>
+    <title>Newsflash</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <div class="container">
-      <h1>Get Weather Conditions From Anywhere!</h1>
-      <label for="location">Enter a location:</label>
-      <input id="location" type="text">
-      <button class="btn-success" id="weatherLocation">Get Current Temperature and Humidity</button>
-      
-      <!-- Modal -->
-      <div class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Current Weather Conditions</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="errors"></div>
-              <div class="showHumidity"></div>
-              <div class="showTemp"></div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="close btn btn-secondary" data-dismiss="modal">Close</button>
-              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
-          </div>
-        </div>
+      <div class="jumbotron">
+        <h1>Newsflash</h1>
+        <p id="subtitle">Find information on your city!</p>
       </div>
     </div>
+
+  <div class="container">
+      <form id="city-input">
+        <div class="form-group">
+          <label for="city-name"><span id="input-text">Enter your city:</span></label>
+          <input type="text" class="form-control" id="city-name"><br>
+            <button type="submit" class="btn btn-outline-secondary" name="button">Submit</button>
+        </div>
+      </form>
+
+      <div class="row">
+      <div class="col" class="card">
+        <div class="card-header">City Map</div>
+        <div class="card-body"></div>
+      </div>
+      <div class="col" class="card">
+        <div class="card-header">Weather</div>
+        <div class="card-body"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" class="card">
+        <div class="card-header">News</div>
+        <div class="card-body"></div>
+      </div>
+      <div class="col" class="card">
+        <div class="card-header">Business</div>
+        <div class="card-body"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+
   </body>
 </html>

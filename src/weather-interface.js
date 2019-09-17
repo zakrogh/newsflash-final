@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles.css';
+import './styles.css';  
 import { WeatherService } from './weather-service';// api - https://openweathermap.org/current
 export default function init(){ //declara the initializatio fxn to be called elswhere 
 $(document).ready(function() {

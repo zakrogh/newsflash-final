@@ -1,1 +1,0 @@
-newsflash README.md

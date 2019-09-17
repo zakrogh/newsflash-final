@@ -5,6 +5,6 @@ import './styles.css';
 import { BusinessSearch } from './yelp-api';
 
 $(document).ready(function(){
-  const businessSearch = new BusinessSearch("Seattle", "restaurant");
-  businessSearch.callBuisinessInfo();
+  const business = new BusinessSearch("Seattle", "restaurants");
+  business.callBusinessInfo();
 });

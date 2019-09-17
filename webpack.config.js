@@ -20,7 +20,7 @@ module.exports = {
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
           title: 'newsflash',
-          template: './src/weather.html',
+          template: './src/index.html',
           inject: 'body'
         }),
         new Dotenv()

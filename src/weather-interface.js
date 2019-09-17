@@ -17,7 +17,7 @@ $(document).ready(function() {
       const body = JSON.parse(response);//
       $(".modal").show();
       $('.showHumidity').text(`The humidity in ${city} is ${body.main.humidity}%`);
-      $('.showTemp').text(`The temperature in Farenheit is ${body.main.temp} degrees revealing the main forecast as ${ body.weather[0].main} whose description is ${body.weather[0].description}.`) //${bbody.weather[0]}.`);
+      $('.showTemp').text(`The temperature in Farenheit is ${body.main.temp} degrees revealing the main forecast as '${ body.weather[0].main}' whose description is ${body.weather[0].description}.`) //${bbody.weather[0]}.`);
       
     }, function(error) {
       $('.showErrors').text(`There was an error processing your request: ${error.message}`);

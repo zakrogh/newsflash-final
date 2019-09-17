@@ -6,7 +6,7 @@
 
 ## Description
 
-_This website is designed to practice calling api's. When a user inputs the name of a major city, the program will return information about that city. Specifically it will return news stories, business information, weather information, and a map containing the city. _
+_This website is designed to practice calling api's. When a user inputs the name of a major city, the program will return information about that city. Specifically it will return news stories, business information, weather information, and a map containing the city._
 
 ## Setup/Installation Requirements
 

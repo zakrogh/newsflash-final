@@ -3,7 +3,7 @@
     Test -
     - return valid city (entered by user) pertinent info
     - valid GET request at given endpoint (each API)
-    - isValid json obj information retreived at status 200
+    - isValid json obj information retreived at status 200ß
     - given the city, does it return the news
     - given the city, does it return the restaurants
     - given the city, does it return the weather 
@@ -34,9 +34,9 @@ describe('city', function() {
     return promise.then(function(response){ //in a test environ w/async, must do a return callback;
       const body = JSON.parse(response);
       expect(body.name.toLowerCase()).toEqual("chicago"); 
-    })
-
+    });
   });
+
 //   //isValid json obj information retreived at status 200
 //   it("isValid json obj information retreived at status 200", function(){
 //     //method test
@@ -53,11 +53,17 @@ describe('city', function() {
 //     expect(message).toEqual("Hello");
 //   });
 //   // - given the city, does it return the weather 
-//   it("given the city, does it return the weather", function(){
-//     let cityWeather = weatherService.getWeatherByCity()
-//     //method test
-//     expect(weatherService.getWeatherByCity(city)).toEqual("38 C");
-//   });
+  it("given the city, does it return the weather", function(){
+   // let cityWeather = weatherService.getWeatherByCity()
+    //method test   
+    let promise = weatherService.resolve();
+    return promise.then(function(response){ //in a test environ w/async, must do a return callback;
+      const body = JSON.parse(response);
+      console.log("body.main.temp, body.main.city", body.main.temp);//, body.main.city);
+      expect(Math.floor(body.main.temp)).toEqual(Math.floor("58.57")); //Math.float(
+        
+    });
+  });
 //   // - given the city, does it return the map
 //   it("given the city, does it return the map", function(){
 //     //method test

@@ -5,31 +5,37 @@ export class BusinessSearch {
     this.location = location;
     this.term = term;
   }
+
   callBusinessInfo() {
     const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${this.location}&term=${this.term}`;
-    
-    $.ajax({
-      url: url,
-      headers: {
-        'Authorization':`Bearer ${process.env.apiKey}`,
-      },
-      method: 'GET',
-      dataType: 'json',
-      context: this,
-      success: function(response){
-        // Grab the results from the API JSON return
-        const totalResults = response.businesses;
+    let promise = new Promise(function(resolve, reject) {
+      const  request = new XMLHttpRequest();
+      request.onload = function() {
+        if(this.status === 200) {
+          resolve(request.response);
+        } else {
+          reject(Error(request.statusText));
+        }
+      }
+      request.open('GET', url);
+      request.setRequestHeader('Authorization', `Bearer ${process.env.apiKey}`);
+      request.send();
+    });
+    // Variable to point out BusinessSearch class
+    let self = this;
+    promise.then(function(response) {
+      let body = JSON.parse(response);
+      const totalResults = body.businesses;
         // If our results are greater than 0, continue
         if (totalResults.length > 0){
-          this.renderInfo(totalResults);
+          self.renderInfo(totalResults);
         } else {
           // If our results are 0; display a no result message.
           $('#business-info').append('<h5>We discovered no results!</h5>');
         }
-      },
-      error: function(request, status, error){
-        alert(`Error: ${request.status}`);
-      }
+      return body.response;
+    }, function(error) {
+      console.log(error);
     });
   }
 

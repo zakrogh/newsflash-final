@@ -39,3 +39,11 @@ div {
 #subtitle {
   font-size: 32px;
 }
+#map{
+  padding: 0px;
+  top: -60px;
+  left: -60px;
+  position: relative;
+  height: 115%;
+  width: 115%;
+}

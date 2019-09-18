@@ -46,6 +46,15 @@ describe('city', function() {
       expect(body.weather[0].description).toEqual("few clouds");
     })
   });
+  //each day will have a diff description: test for "msg:str"
+  it("Is typeof str? valid weather descriptor from JSON.res", function(){
+    //what am i using in the actual code to get the description?
+    let promise = weatherService.getWeatherByCity("city");
+    return promise.then(function(response){
+      const body = JSON.parse(response);
+      expect(typeof body.weather[0].description).toEqual("string");
+    })
+  });
   //
 //   //isValid json obj information retreived at status 200
 //   it("isValid json obj information retreived at status 200", function(){
@@ -75,7 +84,7 @@ describe('city', function() {
   });
   //due to weather changing so rapidly/drastically: 
   it("valid req.res from given endpoint temp: isNum? ", function(){
-    //method test: declare promise and call
+    //method test: 
     let promise = weatherService.getWeatherByCity("chicago");
     return promise.then(function(response){ //in a test environ w/async, must do a return callback;
       const body = JSON.parse(response);

@@ -12,6 +12,7 @@
 */
 
 import { WeatherService } from '../src/weather-service';
+import { isNumber } from 'util';
 // import { BusinessSearch } from '../src/yelp-api';
 // import 'bootstrap';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,7 +37,16 @@ describe('city', function() {
       expect(body.name.toLowerCase()).toEqual("chicago"); 
     });
   });
-
+// Get weather description from JSON response
+  it("valid weather description from JSON response", function(){
+    //what am i using in the actual code to get the description?
+    let promise = weatherService.getWeatherByCity("chicago");
+    return promise.then(function(response){
+      const body = JSON.parse(response);
+      expect(body.weather[0].description).toEqual("few clouds");
+    })
+  });
+  //
 //   //isValid json obj information retreived at status 200
 //   it("isValid json obj information retreived at status 200", function(){
 //     //method test
@@ -56,12 +66,20 @@ describe('city', function() {
   it("given the city, does it return the weather", function(){
    // let cityWeather = weatherService.getWeatherByCity()
     //method test   
-    let promise = weatherService.resolve();
+    let promise = weatherService.getWeatherByCity("chicago")
     return promise.then(function(response){ //in a test environ w/async, must do a return callback;
       const body = JSON.parse(response);
-      console.log("body.main.temp, body.main.city", body.main.temp);//, body.main.city);
-      expect(Math.floor(body.main.temp)).toEqual(Math.floor("58.57")); //Math.float(
-        
+      //take the to equal # out of quotes to have js recognize and compare to expect as an int; passes.
+      expect(body.main.temp).toEqual(65.26); //
+    });
+  });
+  //due to weather changing so rapidly/drastically: 
+  it("valid req.res from given endpoint temp: isNum? ", function(){
+    //method test: declare promise and call
+    let promise = weatherService.getWeatherByCity("chicago");
+    return promise.then(function(response){ //in a test environ w/async, must do a return callback;
+      const body = JSON.parse(response);
+      expect(typeof body.main.temp).toEqual("number"); 
     });
   });
 //   // - given the city, does it return the map

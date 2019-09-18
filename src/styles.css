@@ -66,3 +66,6 @@ div {
   width: 115%;
 }
 
+.city-image {
+  min-width: 500;
+}

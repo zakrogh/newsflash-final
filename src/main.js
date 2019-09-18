@@ -6,6 +6,7 @@ import './styles.css';
 import { BusinessSearch } from './yelp-api';
 import { getNewsApi } from './news-api';
 import { WeatherService } from './weather-service';
+import { ImageApi } from './image-api';
 
 const gatherNews = async function(city){
   let newsData = await getNewsApi(city);
@@ -64,11 +65,13 @@ $(document).ready(function(){
     const restaurantSearch = new BusinessSearch(city, "restaurants");
     const cafeSearch = new BusinessSearch(city, "cafes");
     const barSearch = new BusinessSearch(city, "bars");
+    const cityImage = new ImageApi(city);
     restaurantSearch.callBusinessInfo();
     cafeSearch.callBusinessInfo();
     barSearch.callBusinessInfo();
+    cityImage.getImageApi();
     let newsData = await gatherNews(city);
-    displayNews(newsData)
+    displayNews(newsData);
     let weatherBody = await gatherWeather(city);
     displayMap(weatherBody.coord);
   });

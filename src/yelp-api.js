@@ -9,7 +9,7 @@ export class BusinessSearch {
   callBusinessInfo() {
     const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${this.location}&term=${this.term}`;
     let promise = new Promise(function(resolve, reject) {
-      const  request = new XMLHttpRequest();
+      const request = new XMLHttpRequest();
       request.onload = function() {
         if(this.status === 200) {
           resolve(request.response);

@@ -10,15 +10,15 @@
     - given the city, does it return the map
     - given the city, does it return city specific pics
 */
-
+//import { BusinessSearch } from '../src/yelp-api';
+import { getNewsApi } from '../src/news-api';
 import { WeatherService } from '../src/weather-service';
-import { isNumber } from 'util';
-// import { BusinessSearch } from '../src/yelp-api';
 // import 'bootstrap';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import './styles.css';
 
 let weatherService = new WeatherService();
+// let businessSearch = new BusinessSearch(); //no data; creates jquery immed after receipt
   //TDD 
   //return valid city (entered by user) pertinent info //no way to viably access the input
 describe('city', function() {
@@ -62,10 +62,19 @@ describe('city', function() {
 //     expect(message).toEqual("Hello");
 //   });
 //   // given the city, does it return the news
+  it("valid req.res from given news Img from endpoint: isStr ", function(){
+    //method test: 
+    let promise = getNewsApi("chicago");
+    return promise.then(function(newsData){  //aka response
+      expect(typeof newsData.results[0].fields.thumbnail).toEqual("string"); 
+    });
+  });
 //   it("given the city, does it return the news", function(){
 //     //method test
 //     expect(message).toEqual("Hello");
 //   });
+
+
 //   // - given the city, does it return the restaurants
 //   it("given the city, does it return the restaurants", function(){
 //     //method test
@@ -101,6 +110,17 @@ describe('city', function() {
 //     //method test
 //     expect(message).toEqual("Hello");
 //   });
+// 
+// Biz test; jQuery hindering access to json.req.res 
+  // it("valid req.res from given endpoint temp: isNum? ", function(){
+  //   //method test: 
+  //   let promise = businessSearch.callBusinessInfo("chicago", "restaurant");
+  //   return promise.then(function(response){ //in a test environ w/async, must do a return callback;
+  //     const item = JSON.parse(response);
+  //     expect(typeof item.categories[0].title).toEqual("string"); 
+  //   });
+  // });
+
 });
 
 

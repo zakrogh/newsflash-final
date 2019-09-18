@@ -59,7 +59,6 @@ $(document).ready(function(){
     $(".card-body").text("");
     $(".citymap").append('<div id="map"></div>');
     let city = $("#city-name").val();
-    event.preventDefault();
     const restaurantSearch = new BusinessSearch(city, "restaurants");
     const cafeSearch = new BusinessSearch(city, "cafes");
     const barSearch = new BusinessSearch(city, "bars");

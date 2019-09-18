@@ -69,7 +69,7 @@ describe('city', function() {
     //method test
     let promise = getNewsApi("chicago");
     return promise.then(function(newsData){  //aka response
-    expect(typeof newsData.results[0]).toEqual("string"); 
+    expect(typeof newsData.results[0]).toEqual("object"); 
   });
 });
 // given the city, does it return the news

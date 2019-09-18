@@ -1,0 +1,41 @@
+.jumbotron {
+  background-color: #c3c9c9;
+  text-align: center;
+  font-size: 64px;
+  font-family: monospace;
+  text-decoration: underline;
+}
+
+#city-name {
+  width: 300px;
+}
+
+#input-text {
+  font-family: monospace;
+  font-size: 24px;
+}
+
+div {
+  padding: 30px;
+}
+
+.card-header {
+  background-color: #9ba3b0;
+  font-family: monospace;
+  font-size: 24px;
+  text-align: center;
+
+}
+
+.card-body {
+  background-color: #c0c2c4;
+  height: 400px;
+  overflow: scroll;
+}
+
+.container {
+  background-color: #dedede;
+}
+#subtitle {
+  font-size: 32px;
+}

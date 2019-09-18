@@ -98,6 +98,8 @@ describe('city', function() {
   //     //method test
   //     expect(message).toEqual("Hello");
   //   });
+  // PIC TEST // - 
+  // Pic test; 
   //   // - given the city, does it return city specific pics
   //   it("given the city, does it return city specific pics", function(){
   //     //method test

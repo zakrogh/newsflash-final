@@ -3,12 +3,12 @@
 //city/country: api.openweathermap.org/data/2.5/weather?q={city name},{country code}; params(q city name and country code divided by comma, use ISO 3166 country codes)
 //for maps by station: https://samples.openweathermap.org/data/3.0/stations?appid=
 export class WeatherService {
-  getWeatherByCity(city) {
+  getWeatherByCoords(lat, lon) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
       //https://openweathermap.org/current
-      const weather_url = `http://api.openweathermap.org/data/2.5/weather?q=${city},US&units=imperial&appid=${process.env.USER_KEY}`;
-      // const geo_coords = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}`
+      //const weather_url = `http://api.openweathermap.org/data/2.5/weather?q=${city},US&units=imperial&appid=${process.env.USER_KEY}`;
+      const geo_coords = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${process.env.USER_KEY}`
       // const city_url = `http://api.openweathermap.org/data/2.5/weather?q=${city.name}`
       request.onload = function() {
         if (this.status === 200) {
@@ -17,7 +17,7 @@ export class WeatherService {
           reject(Error(request.statusText));
         }
       }
-      request.open("GET", weather_url, true);
+      request.open("GET", geo_coords, true);
       request.send();
     });
   }

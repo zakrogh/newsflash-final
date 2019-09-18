@@ -11,12 +11,12 @@
     - given the city, does it return city specific pics
 */
 
-import { BusinessSearch } from '../src/yelp-api';
+// import { BusinessSearch } from '../src/yelp-api';
 import { getNewsApi } from '../src/news-api';
 import { WeatherService } from '../src/weather-service';
 
 let weatherService = new WeatherService();
-let businessSearch = new BusinessSearch(city, "restaurants"); 
+// let businessSearch = new BusinessSearch(); 
 
 //  TDD 
 describe('city', function() {
@@ -33,13 +33,13 @@ describe('city', function() {
     });
   });
 // Since weather/JSON will change, this test is built to fail and/or manually input (for now) as it only works when info is gotten on the FE then plugged in test environment and immediately run.
-  it("valid weather description from JSON response", function(){
-    let promise = weatherService.getWeatherByCity("chicago");
-    return promise.then(function(response){
-      const body = JSON.parse(response);
-      expect(body.weather[0].description).toEqual("few clouds");
-    })
-  });
+  // it("valid weather description from JSON response", function(){
+  //   let promise = weatherService.getWeatherByCity("chicago");
+  //   return promise.then(function(response){
+  //     const body = JSON.parse(response);
+  //     expect(body.weather[0].description).toEqual("few clouds");
+  //   })
+  // });
   //GET weather description each day will have a diff description: Test for "JSON response:str"
   it("Is typeof str? valid weather descriptor from JSON.res", function(){
     let promise = weatherService.getWeatherByCity("city");
@@ -48,7 +48,7 @@ describe('city', function() {
       expect(typeof body.weather[0].description).toEqual("string");
     })
   });
-  //
+  // //
 //   //isValid json obj information retreived at status 200
 //   it("isValid json obj information retreived at status 200", function(){
 //     //method test
@@ -73,7 +73,7 @@ describe('city', function() {
   });
 });
 // given the city, does it return the news
-  it("valid req.res from given news Img from endpoint: isStr ", function(){
+  it("valid req.res from given news Image from endpoint: isStr ", function(){
     //method test: 
       let promise = getNewsApi("chicago");
       return promise.then(function(newsData){  // response IMG is a 'str'
@@ -81,16 +81,16 @@ describe('city', function() {
     });
   });
 
-// BUSINESS TEST // - 
-// Biz test; given the city, does it return the restaurants
-  it("given the city, does it return the restaurants", function(){
-    //method test: 
-    let promise = businessSearch.callBusinessInfo("chicago", "restaurant");
-    return promise.then(function(response){ //in a test environ w/async, must do a return callback;
-      const item = JSON.parse(response);
-      expect(typeof item.categories[0].title).toEqual("string"); 
-    });
-  });
+// // BUSINESS TEST // - 
+// // Biz test; given the city, does it return the restaurants
+//   it("given the city, does it return the restaurants", function(){
+//     //method test: 
+//     let promise = businessSearch.callBusinessInfo("chicago", "restaurant");
+//     return promise.then(function(response){ //in a test environ w/async, must do a return callback;
+//       const item = JSON.parse(response);
+//       expect(typeof item.categories[0].title).toEqual("string"); 
+//     });
+//   });
   // MAP TEST // - 
   // Map test; 
   //   // - given the city, does it return the map

@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
+
 import { BusinessSearch } from './yelp-api';
 import { getNewsApi } from './news-api';
 import { WeatherService } from './weather-service';
@@ -54,8 +55,9 @@ $(document).ready(function(){
     event.preventDefault();
     $(".card-body").text("");
     let city = $("#city-name").val();
-    const businessSearch = new BusinessSearch();
-    businessSearch.callBusinessInfo(city, "restaurant");
+    event.preventDefault();
+    const businessSearch = new BusinessSearch(city, "restaurants");
+    businessSearch.callBusinessInfo();
     let newsData = await gatherNews(city);
     displayNews(newsData)
     gatherWeather(city);

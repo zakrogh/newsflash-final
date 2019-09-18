@@ -45,8 +45,12 @@ $(document).ready(function(){
     $(".card-body").text("");
     let city = $("#city-name").val();
     event.preventDefault();
-    const businessSearch = new BusinessSearch(city, "restaurants");
-    businessSearch.callBusinessInfo();
+    const restaurantSearch = new BusinessSearch(city, "restaurants");
+    const cafeSearch = new BusinessSearch(city, "cafes");
+    const barSearch = new BusinessSearch(city, "bars");
+    restaurantSearch.callBusinessInfo();
+    cafeSearch.callBusinessInfo();
+    barSearch.callBusinessInfo();
     let newsData = await gatherNews(city);
     displayNews(newsData)
     gatherWeather(city);

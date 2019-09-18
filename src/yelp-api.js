@@ -40,6 +40,7 @@ export class BusinessSearch {
 
   // Loop through the totalResults, store the values in variables then render.
   renderInfo(totalResults) {
+    let self = this;
     $.each(totalResults, function(i, item) {
       // Store each business's object in a variable
       const id = item.id;
@@ -52,7 +53,7 @@ export class BusinessSearch {
       const address = item.location.address1;
       const city = item.location.city;
       const state = item.location.state;
-      $('#business-info').append(
+      $(`#${self.term}`).append(
         `<div id="${id}">
           <a href="${link}"><p>${businessName}</p></a>
           Rate: ${rating}/5  with ${reviewCount} Reviews<br>Category: ${alias}<br>

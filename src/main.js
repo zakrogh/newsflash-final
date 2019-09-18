@@ -26,15 +26,17 @@ const gatherWeather = function(city){
   return weatherinfo;
 }
 const displayNews = function(newsData){
-  if(!newsData.results){
+  if(!newsData.value){
     $(".citynews").text("Error loading news.");
   }else{
-    for(let i = 0; i < newsData.results.length;i++){
-      $(".citynews").append("<img src='" + newsData.results[i].fields.thumbnail + "'><br>");
-      $(".citynews").append("<strong><a href='" + newsData.results[i].webUrl + "'>" + newsData.results[i].webTitle + "</a></strong><br>");
-      $(".citynews").append("<p>" + newsData.results[i].fields.trailText + "</p><br>");
+    for(let i = 0; i < newsData.value.length;i++){
+      //not every article has an image
+      if(newsData.value[i].image)
+        $(".citynews").append("<img src='" + newsData.value[i].image.thumbnail.contentUrl + "'><br>");
+      $(".citynews").append("<strong><a href='" + newsData.value[i].url + "'>" + newsData.value[i].name + "</a></strong><br>");
+      $(".citynews").append("<p>" + newsData.value[i].description + "</p><br>");
       //slice the time of day off the date string
-      $(".citynews").append(newsData.results[i].webPublicationDate.slice(0, 10) + "<hr>");
+      $(".citynews").append(newsData.value[i].datePublished.slice(0, 10) + "<hr>");
     }
   }
 }

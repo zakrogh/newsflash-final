@@ -46,7 +46,7 @@ $(document).ready(function(){
     let city = $("#city-name").val();
     event.preventDefault();
     const businessSearch = new BusinessSearch(city, "restaurants");
-    businessSearch.callBuisinessInfo();
+    businessSearch.callBusinessInfo();
     let newsData = await gatherNews(city);
     displayNews(newsData)
     gatherWeather(city);

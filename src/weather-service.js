@@ -2,6 +2,7 @@
 //city only: api.openweathermap.org/data/2.5/weather?q={city name}
 //city/country: api.openweathermap.org/data/2.5/weather?q={city name},{country code}; params(q city name and country code divided by comma, use ISO 3166 country codes)
 //for maps by station: https://samples.openweathermap.org/data/3.0/stations?appid=
+//http://api.openweathermap.org/data/2.5/weather?zip="+Postal Code+",us&appid="+key+"&units=imperial
 console.log(process.env.USER_KEY);
 export class WeatherService {
   getWeatherByCity(city) {

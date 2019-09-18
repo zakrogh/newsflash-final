@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1.0,width=device-width" />
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
     <title>Newsflash</title>
   </head>
   <body>
@@ -21,7 +24,8 @@
       <div class="row">
         <div class="col-md-6" class="card">
           <div class="card-header">City Map</div>
-          <div class="card-body citymap"></div>
+          <div class="card-body citymap">
+          </div>
         </div>
         <div class="col-md-6" class="card">
           <div class="card-header">Weather</div>
@@ -34,8 +38,16 @@
           <div class="card-body citynews"></div>
         </div>
         <div class="col-md-6" class="card">
-          <div class="card-header">Business</div>
-          <div class="card-body citybusiness" id="business-info"></div>
+          <div class="card-header">Restaurants</div>
+          <div class="card-body citybusiness" id="restaurants"></div>
+        </div>
+        <div class="col-md-6" class="card">
+          <div class="card-header">Cafes</div>
+          <div class="card-body citybusiness" id="cafes"></div>
+        </div>
+        <div class="col-md-6" class="card">
+          <div class="card-header">Bars</div>
+          <div class="card-body citybusiness" id="bars"></div>
         </div>
       </div>
     </div>

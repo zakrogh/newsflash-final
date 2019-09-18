@@ -39,3 +39,30 @@ div {
 #subtitle {
   font-size: 32px;
 }
+
+.business-container {
+  padding: 0px;
+  overflow: hidden;
+}
+
+.business-link {
+  padding: 10px;
+  display: block;
+}
+
+.business-image {
+  width: 100px;
+  margin: 10px;
+  float: left;
+  height: auto;
+}
+
+#map{
+  padding: 0px;
+  top: -60px;
+  left: -60px;
+  position: relative;
+  height: 115%;
+  width: 115%;
+}
+

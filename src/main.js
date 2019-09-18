@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
+
 import { BusinessSearch } from './yelp-api';
 import { getNewsApi } from './news-api';
 import { WeatherService } from './weather-service';

@@ -54,10 +54,14 @@ export class BusinessSearch {
       const address = item.location.address1;
       const city = item.location.city;
       const state = item.location.state;
+      const handleImage = () => {
+        return ((image !== "") ? image : "https://img.icons8.com/material-outlined/100/000000/cancel-2.png");
+      };
+
       $(`#${self.term}`).append(
         `<div id="${id}" class="business-container">
           <a href="${link}" class="business-link">${businessName}</a>
-          <img class="business-image" src=${image}>
+          <img class="business-image" src=${handleImage()}>
           Rate: ${rating}/5  with ${reviewCount} Reviews<br>Category: ${alias}<br>
           ${address}, ${city}, ${state}<br>
           ${phone}

@@ -55,7 +55,7 @@ $(document).ready(function(){
     $(".card-body").text("");
     let city = $("#city-name").val();
     const businessSearch = new BusinessSearch();
-    businessSearch.callBuisinessInfo(city, "restaurant");
+    businessSearch.callBusinessInfo(city, "restaurant");
     let newsData = await gatherNews(city);
     displayNews(newsData)
     gatherWeather(city);

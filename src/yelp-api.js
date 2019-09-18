@@ -44,6 +44,7 @@ export class BusinessSearch {
     $.each(totalResults, function(i, item) {
       // Store each business's object in a variable
       const id = item.id;
+      const image = item.image_url;
       const link = item.url;
       const alias = item.categories[0].title;
       const phone = item.display_phone;
@@ -54,12 +55,13 @@ export class BusinessSearch {
       const city = item.location.city;
       const state = item.location.state;
       $(`#${self.term}`).append(
-        `<div id="${id}">
-          <a href="${link}"><p>${businessName}</p></a>
+        `<div id="${id}" class="business-container">
+          <a href="${link}" class="business-link">${businessName}</a>
+          <img class="business-image" src=${image}>
           Rate: ${rating}/5  with ${reviewCount} Reviews<br>Category: ${alias}<br>
           ${address}, ${city}, ${state}<br>
-          ${phone}<hr>
-        </div>`
+          ${phone}
+        </div><hr>`
       );
     });
   }

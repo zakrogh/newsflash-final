@@ -17,9 +17,10 @@ import { WeatherService } from '../src/weather-service';
 
 let weatherService = new WeatherService();
 let businessSearch = new BusinessSearch("chicago", "restaurant"); 
-
+let cafeSearch = new BusinessSearch("chicago", "cafes");
+let barSearch = new BusinessSearch("chicago", "bars");
 //  TDD 
-describe('NewsFlash: City', function() {
+describe('0) NewsFlash: City', function() {
 //  WEATHER TEST // - 
 //  return valid city (entered by user) pertinent info //no way to viably access the input
 
@@ -103,6 +104,32 @@ describe('NewsFlash: City', function() {
       expect(typeof item[0].categories[0].title).toEqual("string"); 
     });
   });
+// // BUSINESS TEST // - 
+// Biz test; given the city, does it return the cafes
+it("VII) given the city, does it return the cafes", function(){
+  //method test: 
+  console.log(cafeSearch);
+  let promise = cafeSearch.callBusinessInfo();
+  console.log(promise);
+    return promise.then(function(item){ //in a test environ w/async, must do a return callback;
+    console.log(item)
+    //  const item = JSON.parse(response);
+    expect(typeof item[0].categories[0].title).toEqual("string"); 
+  });
+});
+// // BUSINESS TEST // - 
+// Biz test; given the city, does it return the bars
+it("VIII) given the city, does it return the bars", function(){
+  //method test: 
+  console.log(barSearch);
+  let promise = barSearch.callBusinessInfo();
+  console.log(promise);
+    return promise.then(function(item){ //in a test environ w/async, must do a return callback;
+    console.log(item)
+    //  const item = JSON.parse(response);
+    expect(typeof item[0].categories[0].title).toEqual("string"); 
+  });
+});
   // MAP TEST // - 
   // Map test; 
   //   // - given the city, does it return the map

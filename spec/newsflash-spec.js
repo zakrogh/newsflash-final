@@ -33,23 +33,23 @@ describe('0) NewsFlash: City', function() {
       expect(body.name.toLowerCase()).toEqual("chicago"); 
     });
   });
-// Since weather/JSON will change, this test is built to fail and/or manually input (for now) as it only works when info is gotten on the FE then plugged in test environment and immediately run.
-  // it("valid weather description from JSON response", function(){
-  //   let promise = weatherService.getWeatherByCity("chicago");
-  //   return promise.then(function(response){
-  //     const body = JSON.parse(response);
-  //     expect(body.weather[0].description).toEqual("few clouds");
-  //   })
-  // });
+// Since weather/JSON will change, THIS TEST IS BUILT TO FAIL and/or manually input (for now) as it only works when info is gotten on the FE then plugged in test environment and immediately run.
+  it("valid weather description from JSON response", function(){
+    let promise = weatherService.getWeatherByCity("chicago");
+    return promise.then(function(response){
+      const body = JSON.parse(response);
+      expect(body.weather[0].description).toEqual("few clouds");
+    })
+  });
   //GET weather description each day will have a diff description: Test for "JSON response:str"
-  //DEPRECATED 
-  //it("Is typeof str? valid weather descriptor from JSON.res", function(){
-  //   let promise = weatherService.getWeatherByCity("city");
-  //   return promise.then(function(response){
-  //     const body = JSON.parse(response);
-  //     expect(typeof body.weather[0].description).toEqual("string");
-  //   })
-  // });
+  //this test is built to fail and/or manually input (for now) as it only works when info is gotten on the FE then plugged in test environment and immediately run.
+  it("Is typeof str? valid weather descriptor from JSON.res", function(){
+    let promise = weatherService.getWeatherByCity("city");
+    return promise.then(function(response){
+      const body = JSON.parse(response);
+      expect(typeof body.weather[0].description).toEqual("string");
+    })
+  });
    it("II) Is typeof str? valid gatherWeather(?) from JSON.res", function(){
     let promise = weatherService.getWeatherByCoords(41.8781, -87.6298);
     return promise.then(function(response){
@@ -68,7 +68,7 @@ describe('0) NewsFlash: City', function() {
   it("III) Given city, is weather req.res valid from given endpoint temp: isNum? ", function(){
       //method test: 
       let promise = weatherService.getWeatherByCoords(41.8781, -87.6298);
-      return promise.then(function(response){ //in a test environ w/async, must do a return callback;
+      return promise.then(function(response){ 
       const body = JSON.parse(response);
       expect(typeof body.main.temp).toEqual("number"); 
     });
@@ -98,7 +98,7 @@ describe('0) NewsFlash: City', function() {
     console.log(businessSearch);
     let promise = businessSearch.callBusinessInfo();
     console.log(promise);
-      return promise.then(function(item){ //in a test environ w/async, must do a return callback;
+      return promise.then(function(item){ 
       console.log(item)
       //  const item = JSON.parse(response);
       expect(typeof item[0].categories[0].title).toEqual("string"); 
@@ -111,40 +111,26 @@ it("VII) given the city, does it return the cafes", function(){
   console.log(cafeSearch);
   let promise = cafeSearch.callBusinessInfo();
   console.log(promise);
-    return promise.then(function(item){ //in a test environ w/async, must do a return callback;
+    return promise.then(function(item){ 
     console.log(item)
     //  const item = JSON.parse(response);
     expect(typeof item[0].categories[0].title).toEqual("string"); 
   });
 });
-// // BUSINESS TEST // - 
-// Biz test; given the city, does it return the bars
-it("VIII) given the city, does it return the bars", function(){
-  //method test: 
-  console.log(barSearch);
-  let promise = barSearch.callBusinessInfo();
-  console.log(promise);
-    return promise.then(function(item){ //in a test environ w/async, must do a return callback;
-    console.log(item)
-    //  const item = JSON.parse(response);
-    expect(typeof item[0].categories[0].title).toEqual("string"); 
+  // // BUSINESS TEST // - 
+  // Biz test; given the city, does it return the bars
+  it("VIII) given the city, does it return the bars", function(){
+    //method test: 
+    console.log(barSearch);
+    let promise = barSearch.callBusinessInfo();
+    console.log(promise);
+      return promise.then(function(item){ 
+      console.log(item)
+      //  const item = JSON.parse(response);
+      expect(typeof item[0].categories[0].title).toEqual("string"); 
+    });
   });
-});
-  // MAP TEST // - 
-  // Map test; 
-  //   // - given the city, does it return the map
-  //   it("given the city, does it return the map", function(){
-  //     //method test
-  //     expect(message).toEqual("Hello");
-  //   });
-  // PIC TEST // - 
-  // Pic test; 
-  //   // - given the city, does it return city specific pics
-  //   it("given the city, does it return city specific pics", function(){
-  //     //method test
-  //     expect(message).toEqual("Hello");
-  //   });
-  // 
+
 
 });
 

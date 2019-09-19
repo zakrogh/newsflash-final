@@ -1,16 +1,10 @@
 //GeoCoords: api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}; params(lat/lon)
-//city only: api.openweathermap.org/data/2.5/weather?q={city name}
-//city/country: api.openweathermap.org/data/2.5/weather?q={city name},{country code}; params(q city name and country code divided by comma, use ISO 3166 country codes)
-//for maps by station: https://samples.openweathermap.org/data/3.0/stations?appid=
 
 export class WeatherService {
   getWeatherByCoords(lat, lon) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      //https://openweathermap.org/current
-      //const weather_url = `http://api.openweathermap.org/data/2.5/weather?q=${city},US&units=imperial&appid=${process.env.USER_KEY}`;
       const geo_coords = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${process.env.USER_KEY}`
-      // const city_url = `http://api.openweathermap.org/data/2.5/weather?q=${city.name}`
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);

@@ -7,14 +7,11 @@ import { BusinessSearch } from './yelp-api';
 import { getNewsApi } from './news-api';
 import { WeatherService } from './weather-service';
 import { getImageApi } from './image-api';
+import { getCoordinates } from './geo-coordinates';
 
-const gatherNews = async function(city){
-  let newsData = await getNewsApi(city);
-  return newsData;
-}
-const gatherWeather = function(city){
+const gatherWeather = function(city, lat, lon){
   let weatherService = new WeatherService();  // create instance of WeatherService class
-  let promise = weatherService.getWeatherByCity(city);  // call the instance method and pass in user input for the weather
+  let promise = weatherService.getWeatherByCoords(lat, lon);  // call the instance method and pass in user input for the weather
 
   let weatherinfo = promise.then(async function(response) {
     const body = await JSON.parse(response);
@@ -71,15 +68,16 @@ $(document).ready(function(){
     $(".card-body").text("");
     $(".citymap").append('<div id="map"></div>');
     let city = $("#city-name").val();
+    let coords = await getCoordinates(city);
     const restaurantSearch = new BusinessSearch(city, "restaurants");
     const cafeSearch = new BusinessSearch(city, "cafes");
     const barSearch = new BusinessSearch(city, "bars");
     restaurantSearch.callBusinessInfo();
     cafeSearch.callBusinessInfo();
     barSearch.callBusinessInfo();
-    let newsData = await gatherNews(city);
+    let newsData = await getNewsApi(city);
     displayNews(newsData);
-    let weatherBody = await gatherWeather(city);
+    let weatherBody = await gatherWeather(city, coords.results[0].geometry.lat, coords.results[0].geometry.lng);
     displayMap(weatherBody.coord);
     let cityImage = await getImage(city);
     displayImage(cityImage);

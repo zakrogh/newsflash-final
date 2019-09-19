@@ -8,6 +8,7 @@ import { getNewsApi } from './news-api';
 import { WeatherService } from './weather-service';
 import { getImageApi } from './image-api';
 import { getCoordinates } from './geo-coordinates';
+import { getWeatherMapApi } from './weather-map-api';
 
 const gatherWeather = function(city, lat, lon){
   let weatherService = new WeatherService();  // create instance of WeatherService class
@@ -67,6 +68,7 @@ $(document).ready(function(){
     event.preventDefault();
     $(".card-body").text("");
     $(".citymap").append('<div id="map"></div>');
+    $(".cityweather").append('<div id="windy"></div>');
     let city = $("#city-name").val();
     let coords = await getCoordinates(city);
     const restaurantSearch = new BusinessSearch(city, "restaurants");
@@ -79,6 +81,7 @@ $(document).ready(function(){
     displayNews(newsData);
     let weatherBody = await gatherWeather(city, coords.results[0].geometry.lat, coords.results[0].geometry.lng);
     displayMap(weatherBody.coord);
+    let wmap = getWeatherMapApi(weatherBody.coord);
     let cityImage = await getImage(city);
     displayImage(cityImage);
   });

@@ -15,7 +15,6 @@ export const getCoordinates = function(city){
 
   let apiData = promise.then(async function(response) {
     let content = await JSON.parse(response);
-    console.log(content);
     return content;
   }, function(error) {
     console.log(error);

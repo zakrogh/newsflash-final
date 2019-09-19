@@ -11,22 +11,23 @@
     - given the city, does it return city specific pics
 */
 
-// import { BusinessSearch } from '../src/yelp-api';
+import { BusinessSearch } from '../src/yelp-api';
 import { getNewsApi } from '../src/news-api';
 import { WeatherService } from '../src/weather-service';
 
 let weatherService = new WeatherService();
-// let businessSearch = new BusinessSearch(); 
-
+let businessSearch = new BusinessSearch("chicago", "restaurant"); 
+let cafeSearch = new BusinessSearch("chicago", "cafes");
+let barSearch = new BusinessSearch("chicago", "bars");
 //  TDD 
-describe('city', function() {
+describe('0) NewsFlash: City', function() {
 //  WEATHER TEST // - 
 //  return valid city (entered by user) pertinent info //no way to viably access the input
 
 //valid GET request at given endpoint (each API)
-  it("valid GET request at given endpoint (each API)", function(){
+  it("I) valid GET request at given endpoint (each API)", function(){
     //method test: declare promise and call
-    let promise = weatherService.getWeatherByCity("chicago");
+    let promise = weatherService.getWeatherByCoords(41.8781, -87.6298);
     return promise.then(function(response){ //in a test environment w/async, must do a return callback;
       const body = JSON.parse(response);
       expect(body.name.toLowerCase()).toEqual("chicago"); 
@@ -41,14 +42,22 @@ describe('city', function() {
   //   })
   // });
   //GET weather description each day will have a diff description: Test for "JSON response:str"
-  it("Is typeof str? valid weather descriptor from JSON.res", function(){
-    let promise = weatherService.getWeatherByCity("city");
+  //DEPRECATED 
+  //it("Is typeof str? valid weather descriptor from JSON.res", function(){
+  //   let promise = weatherService.getWeatherByCity("city");
+  //   return promise.then(function(response){
+  //     const body = JSON.parse(response);
+  //     expect(typeof body.weather[0].description).toEqual("string");
+  //   })
+  // });
+   it("II) Is typeof str? valid gatherWeather(?) from JSON.res", function(){
+    let promise = weatherService.getWeatherByCoords(41.8781, -87.6298);
     return promise.then(function(response){
       const body = JSON.parse(response);
       expect(typeof body.weather[0].description).toEqual("string");
     })
-  });
-  // //
+  }); 
+  //
 //   //isValid json obj information retreived at status 200
 //   it("isValid json obj information retreived at status 200", function(){
 //     //method test
@@ -56,41 +65,71 @@ describe('city', function() {
 //   });
 
 //Due to weather changing so rapidly/drastically:  - Given city gotten does it return weather in correct JSON req.res format
-  it("Given city, is weather req.res valid from given endpoint temp: isNum? ", function(){
+  it("III) Given city, is weather req.res valid from given endpoint temp: isNum? ", function(){
       //method test: 
-      let promise = weatherService.getWeatherByCity("chicago");
+      let promise = weatherService.getWeatherByCoords(41.8781, -87.6298);
       return promise.then(function(response){ //in a test environ w/async, must do a return callback;
       const body = JSON.parse(response);
       expect(typeof body.main.temp).toEqual("number"); 
     });
   });
 //  NEWS TEST // - 
- it("given the city, does it return the news", function(){
+ it("IV) given the city, does it return the news", function(){
     //method test
     let promise = getNewsApi("chicago");
-    return promise.then(function(newsData){  //aka response
-    expect(typeof newsData.results[0]).toEqual("object"); 
+    return promise.then(function(apiData){  //aka response
+    expect(typeof apiData.value[0]).toEqual("object"); 
   });
 });
 // given the city, does it return the news
-  it("valid req.res from given news Image from endpoint: isStr ", function(){
+  it("V) valid req.res from given news Image from endpoint: isStr ", function(){
     //method test: 
       let promise = getNewsApi("chicago");
-      return promise.then(function(newsData){  // response IMG is a 'str'
-      expect(typeof newsData.results[0].fields.thumbnail).toEqual("string"); 
+      return promise.then(function(apiData){  // response img is a 'str'
+     // const body = JSON.parse(apiData);
+      expect(typeof apiData.value[0].image.thumbnail.contentUrl ).toEqual("string"); 
     });
   });
 
 // // BUSINESS TEST // - 
-// // Biz test; given the city, does it return the restaurants
-//   it("given the city, does it return the restaurants", function(){
-//     //method test: 
-//     let promise = businessSearch.callBusinessInfo("chicago", "restaurant");
-//     return promise.then(function(response){ //in a test environ w/async, must do a return callback;
-//       const item = JSON.parse(response);
-//       expect(typeof item.categories[0].title).toEqual("string"); 
-//     });
-//   });
+// Biz test; given the city, does it return the restaurants
+  it("VI) given the city, does it return the restaurants", function(){
+    //method test: 
+    console.log(businessSearch);
+    let promise = businessSearch.callBusinessInfo();
+    console.log(promise);
+      return promise.then(function(item){ //in a test environ w/async, must do a return callback;
+      console.log(item)
+      //  const item = JSON.parse(response);
+      expect(typeof item[0].categories[0].title).toEqual("string"); 
+    });
+  });
+// // BUSINESS TEST // - 
+// Biz test; given the city, does it return the cafes
+it("VII) given the city, does it return the cafes", function(){
+  //method test: 
+  console.log(cafeSearch);
+  let promise = cafeSearch.callBusinessInfo();
+  console.log(promise);
+    return promise.then(function(item){ //in a test environ w/async, must do a return callback;
+    console.log(item)
+    //  const item = JSON.parse(response);
+    expect(typeof item[0].categories[0].title).toEqual("string"); 
+  });
+});
+// // BUSINESS TEST // - 
+// Biz test; given the city, does it return the bars
+it("VIII) given the city, does it return the bars", function(){
+  //method test: 
+  console.log(barSearch);
+  let promise = barSearch.callBusinessInfo();
+  console.log(promise);
+    return promise.then(function(item){ //in a test environ w/async, must do a return callback;
+    console.log(item)
+    //  const item = JSON.parse(response);
+    expect(typeof item[0].categories[0].title).toEqual("string"); 
+  });
+});
   // MAP TEST // - 
   // Map test; 
   //   // - given the city, does it return the map
